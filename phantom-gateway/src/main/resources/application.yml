@@ -1,0 +1,38 @@
+# JWT
+jwt:
+  secret: yourSuperSecretKeyHereMakeItLongAndSecure
+  expiration: 86400000000
+spring:
+  application:
+    name: phantom-gateway
+  cloud:
+    nacos:
+    discovery:
+      server-addr: localhost:8848
+  rabbitmq:
+    host: localhost    # 确认这是正确的 RabbitMQ 服务器地址
+    port: 5672         # 默认端口是 5672
+    username: admin    # 默认用户名
+    password: 12345    # 默认密码
+    virtual-host: /    # 虚拟主机配置
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 5
+        min-idle: 2
+        max-wait: 5000ms
+gateway:
+  routing:
+    opcode-to-service:
+      0x1107: match-service
+netty:
+  port: 8888
+
+server:
+  port: 9000
+

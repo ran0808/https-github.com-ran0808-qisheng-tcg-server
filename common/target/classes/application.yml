@@ -1,0 +1,15 @@
+jwt:
+  secret: yourSuperSecretKeyHereMakeItLongAndSecure
+  expiration: 86400000
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 5
+        min-idle: 2
+        max-wait: 5000ms
