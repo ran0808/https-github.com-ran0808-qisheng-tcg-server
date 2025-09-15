@@ -23,61 +23,8 @@
 ## 🗂️ 项目架构
 
 ### 系统架构图
-```flowchart TD
-    %% 定义样式
-    classDef client fill:#9affb3,stroke:#333,stroke-width:1px;
-    classDef gateway fill:#ff9,stroke:#333,stroke-width:1px;
-    classDef service fill:#a2c4ff,stroke:#333,stroke-width:1px;
-    classDef infra fill:#f9cb9c,stroke:#333,stroke-width:1px;
-    classDef data fill:#ea9999,stroke:#333,stroke-width:1px;
+<img width="3840" height="3641" alt="image" src="https://github.com/user-attachments/assets/96245958-dac1-4334-9f8f-90c7c94e5d35" />
 
-    subgraph A [客户端层]
-        Client[游戏客户端]
-    end
-
-    subgraph B [网关层]
-        Gateway[API网关<br>Netty + Spring Cloud Gateway]
-    end
-
-    subgraph C [业务服务层]
-        AuthService[认证服务<br>Spring Boot + JWT]
-        MatchService[匹配服务<br>Spring Boot]
-        GameService[游戏服务<br>Spring Boot]
-    end
-
-    subgraph D [数据与基础设施层]
-        Nacos[服务注册与发现<br>Nacos]
-        Redis[缓存<br>Redis<br>会话/状态]
-        MySQL[数据库<br>MySQL<br>持久化数据]
-        RabbitMQ[消息队列<br>RabbitMQ<br>异步通信]
-    end
-
-    %% 数据流向
-    Client -- TCP长连接<br>自定义协议 --> Gateway
-
-    Gateway -- HTTP/REST<br>服务调用 --> AuthService
-    Gateway -- HTTP/REST<br>服务调用 --> MatchService
-    Gateway -- HTTP/REST<br>服务调用 --> GameService
-
-    AuthService -- HTTP/REST<br>注册/发现 --> Nacos
-    MatchService -- HTTP/REST<br>注册/发现 --> Nacos
-    GameService -- HTTP/REST<br>注册/发现 --> Nacos
-    Gateway -- HTTP/REST<br>注册/发现 --> Nacos
-
-    AuthService -- 读写<br>会话存储 --> Redis
-    GameService -- 读写<br>游戏状态 --> Redis
-    GameService -- 读写<br>持久化数据 --> MySQL
-
-    MatchService -- 生产消息<br>创建房间 --> RabbitMQ
-    RabbitMQ -- 消费消息<br>开始游戏 --> GameService
-
-    %% 应用样式
-    class Client client;
-    class Gateway gateway;
-    class AuthService,MatchService,GameService service;
-    class Nacos,RabbitMQ infra;
-    class Redis,MySQL data;
-```
 ### 模块说明
 
 | 模块名称 | 说明 | 技术栈 |
