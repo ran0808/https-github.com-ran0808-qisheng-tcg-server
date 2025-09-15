@@ -23,7 +23,7 @@
 ## 🗂️ 项目架构
 
 ### 系统架构图
-flowchart TD
+```flowchart TD
     %% 定义样式
     classDef client fill:#9affb3,stroke:#333,stroke-width:1px;
     classDef gateway fill:#ff9,stroke:#333,stroke-width:1px;
@@ -77,7 +77,7 @@ flowchart TD
     class AuthService,MatchService,GameService service;
     class Nacos,RabbitMQ infra;
     class Redis,MySQL data;
-
+```
 ### 模块说明
 
 | 模块名称 | 说明 | 技术栈 |
