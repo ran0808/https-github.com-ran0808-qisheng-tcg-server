@@ -1,0 +1,34 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: 12345
+    # 可选配置
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-attempts: 3
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 5
+        min-idle: 2
+        max-wait: 5000ms
+jwt:
+  secret: yourSuperSecretKeyHereMakeItLongAndSecure
+  expiration: 86400000
+server:
+  port: 9002
